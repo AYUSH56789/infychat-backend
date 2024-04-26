@@ -1,0 +1,1 @@
+{ chatParticipants: { $in: [userId] } }
