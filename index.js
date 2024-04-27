@@ -13,6 +13,7 @@ const { Server } = require("socket.io");
 const { CheckAuthentication, socketAuthentication } = require('./middlewares/CheckAuth.js');
 const { scheduleMessages, setSocketIOInstance } = require('./schedular/messageSchedular.js');
 const {  handleNewMessage } = require('./socket/handleNewMessage.js');
+const { log } = require('console');
 
 // schedular
 scheduleToDeleteUser(); //this schedular delete inactive user from user collection in after 5 minutes...
@@ -48,6 +49,11 @@ app.use(cors({
 // other middlewares
 app.use(express.json());
 app.use(cookieParser()); //it is used to parse thr cookie
+console.log("lho ")
+// routes
+app.use('/api/v1',authRouter);
+app.use('/api/v1/feedback',feedbackRouter);
+app.use('/api/v1/chat',CheckAuthentication,chatRouter);//this is authenticc websites
 
 // authentication middleware for socket io
 io.use((socket, next) => {
