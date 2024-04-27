@@ -23,7 +23,7 @@ const handleLoginRoute = async (req, res) => {
                     // generate Token
                     const authToken = generateToken(userExist, process.env.AUTH_SECRET_KEY);
                     // res.cookie("authToken", authToken); //-> comment to fix same site bug and write new code
-                    res.cookie("authToken", authToken, { sameSite: "None", secure: true });
+                    res.cookie("authToken", authToken, { sameSite: "None"});
                     const data = {
                         "userId":userExist._id,
                         "name": userExist.name,
