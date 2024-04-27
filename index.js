@@ -49,11 +49,6 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser()); //it is used to parse thr cookie
 
-// routes
-app.use('/api/v1',authRouter);
-app.use('/api/v1/feedback',feedbackRouter);
-app.use('/api/v1/chat',CheckAuthentication,chatRouter);//this is authenticc websites
-
 // authentication middleware for socket io
 io.use((socket, next) => {
     cookieParser()(socket.request, socket.request.res, async () => {
