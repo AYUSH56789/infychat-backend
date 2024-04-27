@@ -43,8 +43,7 @@ dbConnect(url);
 
 // always remember: 
 app.use(cors({
-    // origin: 'http://localhost:5173', // Allow requests from the frontend
-    origin: '*', // Allow requests from all origins
+    origin: ['http://localhost:5173','http://192.168.244.186:5173'], // Allow requests from the frontend
     credentials: true // Allow sending cookies from the frontend
 }));
 // other middlewares
