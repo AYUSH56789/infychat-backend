@@ -7,7 +7,7 @@ const handleGetMessages= async (req, res) => {
     try {
         // retreive chat_id from the request
         const { chatId ,page=1} = req.body
-        console.log(chatId);
+        // console.log(chatId);
         // check   whether it is valid or not
         if (!chatId) {
             res.status(400).json({ status: 400, success: false, message: "Bad Request" })

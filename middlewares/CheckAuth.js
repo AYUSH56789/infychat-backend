@@ -4,8 +4,6 @@ const { verifyToken } = require("../services/AuthToken")
 // PENDINFG TO VERIFY USER TO RESTRICT ONY LOGIN PERSON CAN USE IT
 const CheckAuthentication = (req, res,next) => {
     try {
-        console.log("cookies:",req.cookies)
-        console.log("req",req.cookies)
         // pending
         const token = req.cookies.authToken
         if (!token) {

@@ -24,7 +24,7 @@ const handleSignUpRoute = async (req, res) => {
             // extract file from request
             const file = req.file;
             const photoData=await uploadOnCloudinary(file.path,'profilePhoto',email); //upload on cloud
-            console.log(photoData)
+            // console.log(photoData)
             // check if data is not upload on the cloudnary than run than end this controller
             if (!photoData.publicId && !photoData.url) {
                 return res.status(500).json({ status: 500,success:false, message: 'Data not uplaod on cloudnary' });

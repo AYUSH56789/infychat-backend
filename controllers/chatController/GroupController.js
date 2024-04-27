@@ -113,7 +113,7 @@ const handleAddGroupMember = async (req, res) => {
 
                     // add member in the existing chat and return updated chat details.
                     const updateChatData = await Chat.findByIdAndUpdate({ _id: chatId }, { chatParticipants: allMember })
-                    console.log(updateChatData)
+                    // console.log(updateChatData)
                     if (!updateChatData) {
                         return res.status(400).json({ status: 400, success: false, message: "Participant is not add." });
                     } else {
@@ -173,7 +173,7 @@ const handleRemoveGroupMember = async (req, res) => {
                         else {
                             // add new member in the existing chat and return updated chat details.
                             const updateChatData = await Chat.findByIdAndUpdate({ _id: chatId }, { chatParticipants: allMember })
-                            console.log(updateChatData)
+                            // console.log(updateChatData)
                             if (!updateChatData) {
                                 return res.status(400).json({ status: 400, success: false, message: "Participant is not remove." });
                             } else {
@@ -248,7 +248,7 @@ const handleLeaveGroup = async (req, res) => {
                     else {
                         // add new member in the existing chat and return updated chat details.
                         const updateChatData = await Chat.findByIdAndUpdate({ _id: chatId }, { chatParticipants: allMember })
-                        console.log(updateChatData)
+                        // console.log(updateChatData)
                         if (!updateChatData) {
                             return res.status(400).json({ status: 400, success: false, message: "Participant is not leave." });
                         } else {
@@ -268,8 +268,8 @@ const handleLeaveGroup = async (req, res) => {
 // done
 const handleSendAttachments = async (req, res) => {
     try {
-        console.log("we reach");
-        console.log("body",req.body);
+        // console.log("we reach");
+        // console.log("body",req.body);
 
         const { chatId } = req.body;
         if (!chatId) {
@@ -298,7 +298,7 @@ const handleSendAttachments = async (req, res) => {
                     const photoData = await uploadOnCloudinary(file.path, "attachment", file.originalname);
                     attachment.push(photoData);
                 }
-                console.log("attachment:", attachment)
+                // console.log("attachment:", attachment)
 
                 // message for real time
                 const messageForRealTime = {
@@ -648,10 +648,10 @@ const handleDeleteUser = async (req, res) => {
 const handleGetChatDetail = async (req, res) => {
     try {
         const {chatId}=req.body;
-        console.log(chatId,"chatId");
+        // console.log(chatId,"chatId");
         // Find all chats where the user is a participant
         let chat = await Chat.findOne({_id:chatId});
-        console.log(chat);
+        // console.log(chat);
         // Update each chat to remove the user from chatParticipants array
         // const member = chat.chatParticipants.filter( (member) => member!=req.userId );
         const member = chat.chatParticipants;

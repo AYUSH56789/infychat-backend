@@ -49,7 +49,7 @@ app.use(cors({
 // other middlewares
 app.use(express.json());
 app.use(cookieParser()); //it is used to parse thr cookie
-console.log("lho ")
+
 // routes
 app.use('/api/v1',authRouter);
 app.use('/api/v1/feedback',feedbackRouter);

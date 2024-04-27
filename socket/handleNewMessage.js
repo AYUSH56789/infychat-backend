@@ -30,7 +30,7 @@ function handleNewMessage(io,socket){;
             createdAt:new Date().toISOString(),
             chat:chatId
         }
-        console.log(messageForRealTime,);
+        // console.log(messageForRealTime,);
         const messageForDB={
             messageContent:message,
             sender:user._id,
@@ -44,25 +44,25 @@ function handleNewMessage(io,socket){;
         });
         io.to(memberSocket).emit('NEW_MESSAGE_ALERT',{chatId})
         try {
-            console.log("msgrealtime",messageForRealTime);
-            console.log("msgdb",messageForDB);
+            // console.log("msgrealtime",messageForRealTime);
+            // console.log("msgdb",messageForDB);
             const resp=await Message.create(messageForDB);
-            console.log(resp);
+            // console.log(resp);
             const re=await Chat.findByIdAndUpdate({_id:resp.chat},{lastMessage:resp._id},{new:true}).populate('lastMessage',"messageContent createdAt");
-            console.log("msg data",re);
+            // console.log("msg data",re);
         } catch (error) {
-            console.log("message error",error.message)
+            // console.log("message error",error.message)
         }
     })
     socket.on('START_TYPING',({chatId,members})=>{
-        console.log("typing",chatId)
+        // console.log("typing",chatId)
         const memberSocket=getSockets(members)
         socket.to(memberSocket).emit('START_TYPING',{chatId});        
     })
     
     // handle disconnect
     socket.on("disconnect", () => {
-        console.log(socket.id + "-> offline!");
+        // console.log(socket.id + "-> offline!");
         userSocketUserIds.delete(user._id.toString())
         // Emit offline event
         io.emit('IS_ONLINE', { userId: user._id });
