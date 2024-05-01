@@ -66,6 +66,8 @@ const handleSignUpRoute = async (req, res) => {
                 expirationTime.setTime(expirationTime.getTime() + parseInt(process.env.USER_TOKEN_EXPIRATION_TIME)); // Add expiration time from environment variable
 
                 res.cookie("userToken", signupToken, {
+                    sameSite: "None", 
+                    secure: true,
                     expires: expirationTime,
                     httpOnly: process.env.COOKIE_HTTP_ONLY, // Ensures cookie is only accessible via HTTP(S)
                     secure: process.env.COOKIE_SECURE // Ensures cookie is only sent over HTTPS
